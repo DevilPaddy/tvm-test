@@ -1,0 +1,25 @@
+
+{
+  "glyphs": {
+    "T": {"ha": 500, "x_min": 0, "x_max": 500, "o": "M 250 0 L 250 700 L 450 700 L 450 600 L 350 600 L 350 100 L 450 100 L 450 0 Z"},
+    "V": {"ha": 500, "x_min": 0, "x_max": 500, "o": "M 0 700 L 200 0 L 300 0 L 500 700 L 400 700 L 250 150 L 100 700 Z"},
+    "M": {"ha": 600, "x_min": 0, "x_max": 600, "o": "M 0 0 L 100 0 L 300 500 L 500 0 L 600 0 L 600 700 L 500 700 L 500 200 L 300 700 L 100 200 L 100 700 L 0 700 Z"}
+  },
+  "familyName": "Inter",
+  "ascender": 800,
+  "descender": -200,
+  "underlinePosition": -100,
+  "underlineThickness": 50,
+  "boundingBox": {"yMin": -200, "xMin": 0, "yMax": 800, "xMax": 600},
+  "resolution": 1000,
+  "original_font_information": {
+    "format": 0,
+    "copyright": "Copyright (c) 2016 The Inter Project Authors",
+    "fontFamily": "Inter",
+    "fontSubfamily": "Bold",
+    "uniqueID": "Inter Bold",
+    "fullName": "Inter Bold",
+    "version": "Version 1.0",
+    "postScriptName": "Inter-Bold"
+  }
+}

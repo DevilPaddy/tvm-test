@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and sensitive directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /includes/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Allow access to important SEO files
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Main sitemap
+Sitemap: https://tvmitsolution.com/sitemap.xml
