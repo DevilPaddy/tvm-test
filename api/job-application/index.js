@@ -1,5 +1,5 @@
 import formidable from "formidable";
-import cloudinary from "../../src/lib/cloudinary.js";
+import cloudinary from "../../src/lib/cloudinary.ts";
 import { connectDB } from "../../src/lib/db.js";
 import Application from "../../src/lib/models/Application.js";
 
