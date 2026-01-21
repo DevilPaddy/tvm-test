@@ -1,52 +1,52 @@
 import formidable from "formidable";
 import cloudinary from "../../src/lib/cloudinary.ts";
-import { connectDB } from "../../src/lib/db.js";
-import Application from "../../src/lib/models/Application.js";
+import dbConnect from "../db.js";
+import Application from "../../models/Application.js";
 
 export const config = {
   api: {
-    bodyParser: false, 
+    bodyParser: false,
   },
 };
 
 export default async function handler(req, res) {
-
   if (req.method === "POST") {
     try {
-      await connectDB();
+      await dbConnect();
 
       const form = formidable({ multiples: false });
 
-      form.parse(req, async (err, fields, files) => {
-        if (err) {
-          return res.status(400).json({ error: "Form parsing failed" });
-        }
-
-        const resume = files.resume;
-        if (!resume) {
-          return res.status(400).json({ error: "Resume required" });
-        }
-
-        // Upload to Cloudinary
-        const upload = await cloudinary.uploader.upload(resume.filepath, {
-          folder: "job_applications/resumes",
-          resource_type: "raw",
+      // Wrap formidable in a promise to use async/await
+      const { fields, files } = await new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve({ fields, files });
         });
-
-        const application = await Application.create({
-          fullName: fields.fullName,
-          email: fields.email,
-          phone: fields.phone,
-          jobCategory: fields.jobCategory,
-          experienceLevel: fields.experienceLevel,
-          portfolio: fields.portfolio || "",
-          message: fields.message,
-          resumeUrl: upload.secure_url,
-          resumePublicId: upload.public_id,
-        });
-
-        return res.status(201).json(application);
       });
+
+      const resume = files.resume?.[0];
+      if (!resume) {
+        return res.status(400).json({ error: "Resume required" });
+      }
+
+      const upload = await cloudinary.uploader.upload(resume.filepath, {
+        folder: "job_applications/resumes",
+        resource_type: "raw",
+      });
+
+      const application = await Application.create({
+        fullName: fields.fullName?.[0],
+        email: fields.email?.[0],
+        phone: fields.phone?.[0],
+        jobCategory: fields.jobCategory?.[0],
+        experienceLevel: fields.experienceLevel?.[0],
+        portfolio: fields.portfolio?.[0] || "",
+        message: fields.message?.[0],
+        resumeUrl: upload.secure_url,
+        resumePublicId: upload.public_id,
+      });
+
+      return res.status(201).json(application);
 
     } catch (err) {
       console.error(err);
@@ -56,13 +56,15 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      await connectDB();
+      await dbConnect();
       const applications = await Application.find().sort({ createdAt: -1 });
       return res.status(200).json(applications);
-    } catch {
+    } catch (err) {
+      console.error(err);
       return res.status(500).json({ error: "Fetch failed" });
     }
   }
 
+  res.setHeader("Allow", ["GET", "POST"]);
   return res.status(405).end("Method Not Allowed");
 }
