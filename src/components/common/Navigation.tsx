@@ -39,7 +39,7 @@ const Navigation = () => {
       <div className="container-custom flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <img 
-            src="/img/tvm_logo.png" 
+            src="/img/tvm_logo.webp" 
             alt="TVM IT Solutions" 
             className="h-16 w-auto"
           />

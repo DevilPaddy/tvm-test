@@ -80,7 +80,7 @@ const ServicesSection = () => {
                   before:absolute before:inset-0 before:rounded-2xl 
                   before:bg-gradient-to-r before:${service.borderGradient}
                   before:p-[1px] before:opacity-0 hover:before:opacity-100
-                  before:transition-opacity before:duration-300
+                  before:transition-opacity before:duration-300 hover:border-none
                 `}>
                   
                   {/* Simple hover background */}
@@ -112,7 +112,7 @@ const ServicesSection = () => {
                     </p>
                     
                     {/* Simple CTA */}
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-3">
                       <div className={`
                         flex items-center ${service.iconColor} font-medium text-sm
                         transform group-hover:translate-x-1 transition-transform duration-200

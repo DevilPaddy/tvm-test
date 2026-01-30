@@ -169,7 +169,7 @@ const TestimonialsSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-blue-100/60 rounded-3xl"></div>
                       
                       {/* Quote icon with blue theme */}
-                      <div className="absolute -top-6 -left-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-5 shadow-xl">
+                      <div className="absolute -top-4 -left-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-5 shadow-xl">
                         <Quote size={28} className="text-white" />
                       </div>
                       

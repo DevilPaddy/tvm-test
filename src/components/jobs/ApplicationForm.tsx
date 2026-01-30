@@ -38,6 +38,8 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const ApplicationForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -80,7 +82,7 @@ const ApplicationForm = () => {
       // append resume file
       formData.append("resume", resumeFile);
 
-      const res = await fetch("/api/job-application", {
+      const res = await fetch(`${BASE_URL}/api/applications`, {
         method: "POST",
         body: formData,
       });

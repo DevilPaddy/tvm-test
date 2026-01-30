@@ -123,9 +123,9 @@ const HeroSection = () => {
           <div className="relative">
             {/* Main Image Container - minimal hover effect only */}
             <div className="relative z-10 hover:scale-[1.01] transition-transform duration-500">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-white to-blue-50/50 p-8">
+              <div className="relative rounded-2xl  shadow-2xl bg-gradient-to-br from-white to-blue-50/50 p-8">
                 <img
-                  src="/img/tvm_banner.png"
+                  src="/img/tvm_banner.webp"
                   alt="Advanced digital technology solutions and innovation by TVM IT Solutions"
                   className="w-full h-auto object-cover rounded-xl"
                   width="600"

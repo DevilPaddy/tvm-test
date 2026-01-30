@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const JobListings = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedExperience, setSelectedExperience] = useState("All Levels");
@@ -20,7 +22,7 @@ const JobListings = () => {
   const fetchJobs = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/jobs");
+      const res = await fetch(`${BASE_URL}/api/jobs`);
 
       if (!res.ok) {
         throw new Error("Failed to fetch jobs");

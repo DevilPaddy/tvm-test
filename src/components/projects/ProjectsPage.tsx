@@ -18,6 +18,8 @@ interface Project {
   featured: boolean;
 }
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const ProjectsPage: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -39,7 +41,7 @@ const ProjectsPage: React.FC = () => {
     const fetchProjects = async () => {
       setLoading(true);
       try {
-        const res = await fetch('/api/projects');
+        const res = await fetch(`${BASE_URL}/api/projects`);
 
         if (!res.ok) {
           throw new Error('Failed to fetch projects');

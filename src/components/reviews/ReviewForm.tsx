@@ -10,6 +10,8 @@ type ServiceCategory =
   | "Digital Marketing"
   | "Influencer Marketing";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const ReviewForm = () => {
   const { toast } = useToast();
 
@@ -63,7 +65,7 @@ const ReviewForm = () => {
     }
 
     try {
-      const res = await fetch("/api/reviews", {
+      const res = await fetch(`${BASE_URL}/api/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

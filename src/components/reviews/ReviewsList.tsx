@@ -4,6 +4,9 @@ import SectionHeading from "../common/SectionHeading";
 import AnimatedCard from "../common/AnimatedCard";
 import { useToast } from "@/components/ui/use-toast";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
+
 const ReviewsList = () => {
   const { toast } = useToast();
   const [reviews, setReviews] = useState([]);
@@ -21,7 +24,7 @@ const ReviewsList = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch("/api/reviews");
+        const res = await fetch(`${BASE_URL}/api/reviews`);
 
         if (!res.ok) {
           throw new Error("Failed to fetch reviews");

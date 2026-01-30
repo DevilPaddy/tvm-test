@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import OfferDialog from "./OfferDialog";
 import { shouldShowOffer, markOfferSeen } from "../../../utils/useOfferVisibility.ts";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const OfferController = () => {
   const [open, setOpen] = useState(false);
   const [offer, setOffer] = useState(null);
@@ -9,7 +11,7 @@ const OfferController = () => {
   useEffect(() => {
     const fetchOffer = async () => {
       try {
-        const res = await fetch("/api/offers");
+        const res = await fetch(`${BASE_URL}/api/coupons`);
         const json = await res.json();
 
         // ✅ Use 'isActive' to match your API

@@ -5,6 +5,8 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 interface FormData {
   name: string;
   email: string;
@@ -32,7 +34,7 @@ const ContactForm = () => {
   useEffect(() => {
     const fetchContact = async () => {
       try {
-        const res = await fetch("/api/contact");
+        const res = await fetch(`${BASE_URL}/api/contacts`);
         const data = await res.json();
         if (data.success) {
           setContact(data.data);
@@ -69,7 +71,7 @@ const ContactForm = () => {
       setIsSubmitting(true);
 
       // POST form to user-contact API
-      const res = await fetch("/api/usercontact", {
+      const res = await fetch(`${BASE_URL}/api/usercontacts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
